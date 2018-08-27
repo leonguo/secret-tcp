@@ -67,7 +67,7 @@ func (c *Codec) Encode(message Message, duration time.Duration) error {
 
 	binary.BigEndian.PutUint16(c.WriteBuf[0:TypeLen], uint16(message.Code))
 
-	binary.BigEndian.PutUint16(c.WriteBuf[LenLen:HeadLen], uint16(len(message.Content)))
+	binary.BigEndian.PutUint16(c.WriteBuf[TypeLen:HeadLen], uint16(len(message.Content)))
 
 	copy(c.WriteBuf[HeadLen:], message.Content[:contentLen])
 
